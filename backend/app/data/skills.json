@@ -1,0 +1,35 @@
+[
+  { "title": "AI / Agentic", "items": [
+    { "name": "LangGraph", "level": 4 },
+    { "name": "LangChain", "level": 4 },
+    { "name": "Agentic AI Workflows", "level": 4 },
+    { "name": "Prompt Engineering", "level": 4 },
+    { "name": "MCP / Multi-Agent Orchestration", "level": 3 },
+    { "name": "CrewAI / OpenAI Agents SDK", "level": 3 }
+  ] },
+  { "title": "Frontend", "items": [
+    { "name": "React.js", "level": 4 },
+    { "name": "JavaScript (ES6+)", "level": 4 },
+    { "name": "Tailwind CSS", "level": 4 },
+    { "name": "HTML5 / CSS3", "level": 4 }
+  ] },
+  { "title": "Full-Stack (MERN)", "items": [
+    { "name": "Node.js / Express.js", "level": 4 },
+    { "name": "MongoDB", "level": 3 },
+    { "name": "REST APIs", "level": 4 },
+    { "name": "JWT Authentication", "level": 3 },
+    { "name": "MySQL", "level": 3 }
+  ] },
+  { "title": "CS Fundamentals", "items": [
+    { "name": "Data Structures & Algorithms", "level": 4 },
+    { "name": "Graph Algorithms", "level": 4 },
+    { "name": "Problem Solving", "level": 4 },
+    { "name": "Debugging", "level": 3 }
+  ] },
+  { "title": "Tools & Platforms", "items": [
+    { "name": "Git / GitHub", "level": 4 },
+    { "name": "VS Code", "level": 4 },
+    { "name": "Postman", "level": 3 },
+    { "name": "Vercel / Netlify", "level": 3 }
+  ] }
+]

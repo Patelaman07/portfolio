@@ -1,0 +1,11 @@
+node_modules/
+dist/
+dist-ssr/
+.venv/
+__pycache__/
+*.pyc
+.env
+backend/output/
+*.log
+.DS_Store
+.claude/

@@ -1,0 +1,8 @@
+{
+  "name": "portfolio-workspace",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix portfolio run dev",
+    "backend": "backend\\run.bat"
+  }
+}

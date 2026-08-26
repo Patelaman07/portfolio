@@ -1,0 +1,16 @@
+{
+  "name": "Aman Patel",
+  "title": "Agentic AI & MERN Stack Engineer",
+  "location": "India",
+  "focus": "Agentic AI · MERN Stack",
+  "languages": ["English", "हिन्दी", "Hinglish"],
+  "core_stack": ["JavaScript", "React.js", "Node.js", "Python"],
+  "agent_framework": "LangGraph",
+  "open_to": "Agentic AI / Full-stack roles",
+  "email": "skillsexplorer203@gmail.com",
+  "github": "https://github.com/Patelaman07",
+  "linkedin": "https://www.linkedin.com/in/aman-patel-77b5ba288/",
+  "achievements": ["300+ DSA problems solved on LeetCode", "GitHub Pull Shark achievement (merged open-source PRs)", "GitHub Pro badge"],
+  "education": "B.Tech in Electronics Engineering, Rajkiya Engineering College, Sonbhadra (2022–2026), CGPA 7.2/10",
+  "summary": "Final-year Electronics Engineering student and full-stack MERN developer building agentic AI systems and full-stack web applications. Skilled in the MERN stack, LLM-driven automation, and prompt engineering — including an autonomous agent that plans app architecture and generates frontend code from prompts. Strong CS foundation with 300+ solved DSA problems. Treats AI as infrastructure, not decoration: every AI surface here is built to say \"I don't know\" when it should, rather than improvise confidently."
+}

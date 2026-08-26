@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: portfolio-backend
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: GEMINI_CHAT_MODEL
+        value: gemini-3.6-flash
+      - key: GEMINI_EMBED_MODEL
+        value: gemini-embedding-001
