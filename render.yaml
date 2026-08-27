@@ -2,7 +2,6 @@ services:
   - type: web
     name: portfolio-backend
     runtime: docker
-    plan: starter
     rootDir: backend
     dockerfilePath: ./Dockerfile
     healthCheckPath: /api/health
