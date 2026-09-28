@@ -30,6 +30,19 @@ RUN_NPROC_LIMIT = 4  # blocks fork bombs; std::thread doesn't count against this
 # Dockerfile comment. On Windows/local dev this is unused.
 SANDBOX_USER = os.environ.get("SANDBOX_USER", "sandbox")
 
+# Hosts like Hugging Face Spaces run the container as a fixed non-root uid, so
+# the user drop above is impossible there. The binary then runs as our own uid,
+# which could otherwise read this process's /proc/<pid>/environ (GEMINI_API_KEY).
+# Marking the server non-dumpable makes its /proc entries root-owned and blocks
+# ptrace, so a same-uid child can't read them. Children regain dumpable on exec.
+CAN_DROP_USER = POSIX and os.geteuid() == 0
+if POSIX and not CAN_DROP_USER:
+    import ctypes
+
+    _PR_SET_DUMPABLE = 4
+    if ctypes.CDLL(None, use_errno=True).prctl(_PR_SET_DUMPABLE, 0, 0, 0, 0) != 0:
+        raise RuntimeError("could not mark server non-dumpable; refusing to run untrusted C++ as our own uid")
+
 
 def _find_gxx() -> str:
     found = shutil.which("g++")
@@ -110,8 +123,9 @@ def compile_and_run(code: str) -> dict:
         run_kwargs = {}
         if POSIX:
             run_kwargs["preexec_fn"] = _run_limits
-            run_kwargs["user"] = SANDBOX_USER
-            run_kwargs["group"] = SANDBOX_USER
+            if CAN_DROP_USER:
+                run_kwargs["user"] = SANDBOX_USER
+                run_kwargs["group"] = SANDBOX_USER
 
         try:
             run_result = subprocess.run(
