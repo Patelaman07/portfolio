@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+pydantic
+python-dotenv
+slowapi
+google-genai
+langchain
+langchain-core
+langchain-google-genai
+langgraph
+numpy
