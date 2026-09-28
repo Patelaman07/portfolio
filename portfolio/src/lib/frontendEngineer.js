@@ -28,3 +28,8 @@ export async function getStatus(jobId) {
   if (!res.ok) throw new Error(`Failed to poll status: ${res.status}`);
   return res.json();
 }
+
+/** URL that downloads the finished project as `<project-name>.zip` (one top-level folder). */
+export function downloadUrl(jobId) {
+  return `${API_URL}/api/frontend-engineer/download/${jobId}`;
+}

@@ -63,7 +63,7 @@ export default function Contact() {
           </div>
           <Button onClick={onSend}>Send message</Button>
           {sent && (
-            <div style={{ display: 'block', marginTop: 14, color: 'var(--brass)', fontSize: 14, fontFamily: 'var(--font-mono)' }}>
+            <div style={{ display: 'block', marginTop: 14, color: 'var(--ok)', fontSize: 14, fontFamily: 'var(--font-mono)' }}>
               ✓ Sent — I'll reply within a day.
             </div>
           )}

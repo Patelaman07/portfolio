@@ -2,7 +2,6 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import BackgroundCanvas from './components/BackgroundCanvas';
 import { useTheme } from './hooks/useTheme';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -22,7 +21,6 @@ export default function App() {
 
   return (
     <>
-      <BackgroundCanvas />
       <Navbar theme={theme} onToggleTheme={toggle} />
       <main className="wrap">
         <Routes>

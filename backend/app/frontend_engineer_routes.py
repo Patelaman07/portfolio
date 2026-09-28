@@ -1,9 +1,13 @@
+import io
 import threading
 import uuid
+import zipfile
 
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, HTTPException, Request
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
+from .frontend_engineer.agents.write_output_agent import _slugify
 from .frontend_engineer.graph import graph
 from .rate_limit import limiter
 
@@ -77,6 +81,7 @@ def generate(request: Request, req: GenerateRequest):
         "output_dir": "",
         "final_output": "",
         "error": None,
+        "project_slug": _slugify(req.project_name),
     }
     thread = threading.Thread(target=_run_job, args=(job_id, req.task, req.project_name), daemon=True)
     thread.start()
@@ -89,3 +94,27 @@ def status(job_id: str):
     if job is None:
         return {"status": "not_found"}
     return job
+
+
+@router.get("/api/frontend-engineer/download/{job_id}")
+def download(job_id: str):
+    """Zips the generated files (from memory, so it works where disk writes are skipped)
+    inside a top-level folder named after the project."""
+    job = jobs.get(job_id)
+    if job is None or job["status"] != "done" or not job["files"]:
+        raise HTTPException(status_code=404, detail="No finished project for this job.")
+
+    slug = job["project_slug"]
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
+        for rel_path, content in job["files"].items():
+            safe = rel_path.replace("\\", "/").lstrip("/")
+            if ".." in safe.split("/"):
+                continue
+            zf.writestr(f"{slug}/{safe}", content)
+    buf.seek(0)
+    return StreamingResponse(
+        buf,
+        media_type="application/zip",
+        headers={"Content-Disposition": f'attachment; filename="{slug}.zip"'},
+    )

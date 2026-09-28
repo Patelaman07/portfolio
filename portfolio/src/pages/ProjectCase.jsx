@@ -21,13 +21,10 @@ export default function ProjectCase() {
 
   return (
     <section className="view" id="project-case">
-      <Link to="/projects" className="case-back">← Back to all projects</Link>
+      <Link to="/projects" className="case-back">← All systems</Link>
 
       <div className="case-header">
-        <div className="eyebrow">
-          <span className={`badge${p.badge === 'P0' ? ' p0' : ''}`}>{p.badge}</span>
-          &nbsp;Case study
-        </div>
+        <div className="eyebrow">Case study · {String(i + 1).padStart(2, '0')}</div>
         <h1>{p.name}</h1>
         <p className="lead">{p.desc}</p>
         <div className="tags">
@@ -55,7 +52,7 @@ export default function ProjectCase() {
           <h4>Sample code</h4>
           <CodeBlock code={p.code} />
         </section>
-        <section>
+        <section className="demo-section">
           <h4>Live demo</h4>
           {(() => {
             const Demo = LIVE_DEMOS[p.id];

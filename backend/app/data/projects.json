@@ -19,11 +19,11 @@
       "Validate & cite"
     ],
     "stack": [
-      "Next.js",
+      "React",
       "FastAPI",
       "LangGraph",
       "Vector store",
-      "Ollama"
+      "Gemini"
     ],
     "features": [
       "Source chips on every answer",
@@ -59,7 +59,7 @@
       "LangChain",
       "Python",
       "FastAPI",
-      "Ollama"
+      "Gemini"
     ],
     "features": [
       "Outputs a real, ready-to-run file tree, not just prose",
@@ -94,7 +94,7 @@
       "Monaco",
       "FastAPI",
       "g++",
-      "Ollama"
+      "Gemini"
     ],
     "features": [
       "Structured error parsing (line/col/message)",

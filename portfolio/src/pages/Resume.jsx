@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Button from '../components/Button';
 
 const TIMELINE = [
-  { when: 'Jun 2025 — Jul 2025', title: 'Web Development Trainee', where: 'Parkquality',
+  { when: 'Jun 2025 — Present', title: 'Web Development Trainee', where: 'Parkquality',
     text: 'Fixed responsive design issues across 15+ web pages and improved responsiveness for 20+ UI components, ensuring seamless compatibility across desktop, tablet and mobile. Tested applications and verified bug fixes before deployment, and contributed to code reviews and debugging sessions.' },
   { when: 'Ongoing', title: 'Open Source Contributor', where: 'Frontend Development',
     text: 'Contributed to open-source web applications by fixing frontend bugs and improving UIs — resolved responsive layout issues to achieve 100% compatibility across major screen sizes and browsers, and improved visual consistency across pages by roughly 20%.' },

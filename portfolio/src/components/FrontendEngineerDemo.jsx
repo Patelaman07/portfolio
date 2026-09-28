@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { PIPELINE, getStatus, startGeneration } from '../lib/frontendEngineer';
+import { PIPELINE, downloadUrl, getStatus, startGeneration } from '../lib/frontendEngineer';
 import CodeBlock from './CodeBlock';
 
 const POLL_MS = 3000;
@@ -40,7 +40,7 @@ export default function FrontendEngineerDemo() {
         }
       }, POLL_MS);
     } catch {
-      setStartError("Can't reach the AI Frontend Engineer service — is it running on :8001?");
+      setStartError("Can't reach the AI Frontend Engineer service — is the backend running on :8000?");
     }
   }
 
@@ -63,7 +63,7 @@ export default function FrontendEngineerDemo() {
           {running ? 'Generating…' : '▶ Run the agent'}
         </button>
         {!job && (
-          <p className="fe-note">Runs ~20 real local LLM calls across 10 agents — takes several minutes.</p>
+          <p className="fe-note">Runs ~20 real LLM calls across 10 agents — takes a few minutes.</p>
         )}
         {startError && <p className="fe-error">{startError}</p>}
       </div>
@@ -88,9 +88,18 @@ export default function FrontendEngineerDemo() {
 
       {done && (
         <div className="fe-result">
-          <p className="fe-note">
-            Wrote {Object.keys(job.files).length} files to <code>{job.output_dir}</code>
-          </p>
+          <div className="fe-download">
+            <div>
+              <div className="fe-download-title">Your app is ready</div>
+              <p className="fe-note">
+                {Object.keys(job.files).length} files in <code>{job.project_slug || projectName}/</code> — download the folder and run it locally.
+              </p>
+            </div>
+            <a className="btn btn-primary" href={downloadUrl(jobId)} download={`${job.project_slug || 'generated-app'}.zip`}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14" /></svg>
+              Download .zip
+            </a>
+          </div>
           <div className="fe-browser">
             <div className="fe-filelist">
               {Object.keys(job.files).map(path => (
